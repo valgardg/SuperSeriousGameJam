@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e55e93750f504bee9d983e03e6d72ef, type: 3}
+  m_Name: VOO
+  m_EditorClassIdentifier: Assembly-CSharp::StockDefinition
+  stockName: VOO
+  icon: {fileID: 21300000, guid: 6645f6a14c658421d939234b3d2b9e3b, type: 3}
+  stockType: 4
+  baseValue: 1
+  rarity: 1
+  effects:
+  - {fileID: 11400000, guid: 9034caaac83bd4b0bad400b495e32516, type: 2}
