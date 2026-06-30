@@ -13,15 +13,32 @@ public class SlotGenerator : MonoBehaviour
     [SerializeField]
     private StockDefinition initialPlayerStock;
 
-    private void Start()
+    private void Awake()
     {
         stockPool = Resources.LoadAll<StockDefinition>("Stocks");
 
-        emptyStockDefinition = Resources.LoadAll<StockDefinition>("EmptyStock").First();
-        initialPlayerStock = Resources.LoadAll<StockDefinition>("InitialStock").First();
-        gameController.playerState.AddStock(initialPlayerStock);
+        emptyStockDefinition = Resources.LoadAll<StockDefinition>("EmptyStock").FirstOrDefault();
+        initialPlayerStock = Resources.LoadAll<StockDefinition>("InitialStock").FirstOrDefault();
+
+        if (emptyStockDefinition == null)
+            Debug.LogError("No StockDefinition was found in Resources/EmptyStock.", this);
+
+        if (initialPlayerStock == null)
+            Debug.LogError("No StockDefinition was found in Resources/InitialStock.", this);
 
         Debug.Log($"Loaded {stockPool.Length} stocks.");
+    }
+
+    private void Start()
+    {
+        if (gameController == null || gameController.playerState == null)
+        {
+            Debug.LogError("SlotGenerator requires an initialized GameController.", this);
+            return;
+        }
+
+        if (initialPlayerStock != null)
+            gameController.playerState.AddStock(initialPlayerStock);
     }
 
     public SlotCell GenerateSlotCell(bool isEmpty = false)
@@ -32,7 +49,9 @@ public class SlotGenerator : MonoBehaviour
         List<StockDefinition> ownedStocks = gameController.playerState.OwnedStocks;
 
         float fillChance = Mathf.Lerp(0.10f, 1f, Mathf.Sqrt(ownedStocks.Count / 15f));
-        bool generateFilled = !isEmpty && Random.value < fillChance;
+        bool generateFilled = !isEmpty
+            && ownedStocks.Count > 0
+            && Random.value < fillChance;
 
         if (generateFilled)
         {

@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SameTypeThresholdEffect
   effectName: Brand Loyalty
   description: 'Gain $10 when you spin 3 or more of this stock '
+  matchMode: 0
+  requiredStockType: 0
   requiredMatchingStocks: 3
-  bonusPerMatchingStock: 1
+  bonusPerMatchingStock: 10

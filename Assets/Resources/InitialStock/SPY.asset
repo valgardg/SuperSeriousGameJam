@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StockDefinition
   stockName: SPY
   icon: {fileID: 21300000, guid: 7d868ab06dc834bbfbe02303ce0fde24, type: 3}
-  stockType: 6
+  stockType: 4
   baseValue: 1
   rarity: 0
   effects: []

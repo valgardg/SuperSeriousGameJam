@@ -6,11 +6,17 @@ public class RentPanel : MonoBehaviour
     public TMP_Text landlordText;
     public TMP_Text rentPriceTex;
 
-    private void Start()
+    private void Awake()
     {
-        gameObject.SetActive(false); // Hide the panel initially
         LandlordController.OnLandlordEventTriggered += ShowRentPanel;
         GameController.RentPaid += HideRentPanel;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        LandlordController.OnLandlordEventTriggered -= ShowRentPanel;
+        GameController.RentPaid -= HideRentPanel;
     }
 
     public void ShowRentPanel(DayInfo dayInfo)

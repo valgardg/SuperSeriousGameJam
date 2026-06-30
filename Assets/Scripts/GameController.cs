@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField]
+    [System.NonSerialized]
     public PlayerState playerState;
     public SlotCalculator slotCalculator;
     public SlotGenerator slotGenerator;
@@ -10,27 +10,40 @@ public class GameController : MonoBehaviour
     public static event System.Action<StockDefinition[]> DisplayStockPicker;
     public static event System.Action RentPaid;
 
-    public GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverPanel;
 
     // game days information
     public int currentDay = 0;
     public LandlordController landlordController;
     private int latestRentPrice = 0;
+    private SlotController activeSlotController;
 
-    private void Start()
+    private void Awake()
     {
         playerState = new PlayerState();
 
-        SlotController.OnSpinEnded += HandleSpinEnded;
-        StockOptionUI.OnStockOptionSelected += HandleStockOptionSelected;
-        Debug.Log("Subscribed to OnSpinEnded event.");
-
-        // hook up soundtrack adjustments
-        HookSoundAdjustments();
+        if (gameOverPanel == null)
+            Debug.LogError("GameController requires a Game Over Panel reference.", this);
     }
 
-    private void HandleSpinEnded()
+    private void OnEnable()
     {
+        SlotController.OnSpinEnded += HandleSpinEnded;
+        StockOptionUI.OnStockOptionSelected += HandleStockOptionSelected;
+        LandlordController.OnLandlordEventTriggered += HandleLandlordEventTriggered;
+    }
+
+    private void OnDisable()
+    {
+        SlotController.OnSpinEnded -= HandleSpinEnded;
+        StockOptionUI.OnStockOptionSelected -= HandleStockOptionSelected;
+        LandlordController.OnLandlordEventTriggered -= HandleLandlordEventTriggered;
+    }
+
+    private void HandleSpinEnded(SlotController slotController)
+    {
+        activeSlotController = slotController;
+
         slotCalculator.StartCalculation(totalValue =>
         {
             Debug.Log($"Total value calculated: {totalValue}");
@@ -38,6 +51,7 @@ public class GameController : MonoBehaviour
             Debug.Log($"Player's new money: {playerState.money}");
 
             StockDefinition[] unknownStocks = slotGenerator.GetUnknownStocks();
+            DampenSoundtrackVolume();
             DisplayStockPicker?.Invoke(unknownStocks);
         });
     }
@@ -46,34 +60,56 @@ public class GameController : MonoBehaviour
     {
         playerState.AddStock(selectedStock);
         Debug.Log($"Added stock: {selectedStock.name} to player's inventory.");
+        RestoreSoundtrackVolume();
         currentDay++;
         latestRentPrice = landlordController.CheckTriggerDayInfo(currentDay);
+
+        if (latestRentPrice <= 0)
+            CompleteCurrentSpinCycle();
     }
 
     public void AttemptToPayRent()
     {
+        if (latestRentPrice <= 0)
+        {
+            Debug.LogWarning("Attempted to pay rent when no rent is currently due.", this);
+            return;
+        }
+
         if (playerState.money >= latestRentPrice)
         {
             Debug.Log("Player paid off rent!");
             playerState.money -= latestRentPrice;
-            RentPaid.Invoke();
+            latestRentPrice = 0;
+            RestoreSoundtrackVolume();
+            RentPaid?.Invoke();
+            CompleteCurrentSpinCycle();
         }
         else
         {
             Debug.Log("Player has lost!");
-            gameOverPanel.SetActive(true);
-            soundtrackAudioSource.Stop();
+            if (gameOverPanel != null)
+                gameOverPanel.SetActive(true);
+
+            if (soundtrackAudioSource != null)
+                soundtrackAudioSource.Stop();
         }
     }
 
     public AudioSource soundtrackAudioSource;
 
-    private void HookSoundAdjustments()
+    private void HandleLandlordEventTriggered(DayInfo dayInfo)
     {
-        StockOptionUI.OnStockOptionSelected += (StockDefinition stockDefinition) => RestoreSoundtrackVolume();
-        DisplayStockPicker += (StockDefinition[] stockDefinitions) => DampenSoundtrackVolume();
-        LandlordController.OnLandlordEventTriggered += (DayInfo dayInfo) => DampenSoundtrackVolume();
-        RentPaid += () => RestoreSoundtrackVolume();
+        DampenSoundtrackVolume();
+    }
+
+    private void CompleteCurrentSpinCycle()
+    {
+        if (activeSlotController == null)
+            return;
+
+        activeSlotController.CompleteSpinCycle();
+        activeSlotController = null;
     }
 
     private void DampenSoundtrackVolume()

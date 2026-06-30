@@ -14,7 +14,11 @@ public class SlotController : MonoBehaviour
     public AudioSource startSpinSound;
     public AudioSource slotSpinningSound;
     // actions
-    public static event System.Action OnSpinEnded;
+    public static event System.Action<SlotController> OnSpinEnded;
+
+    public bool IsSpinning { get; private set; }
+    public bool IsSpinCycleActive { get; private set; }
+    private Coroutine spinCoroutine;
 
     public bool spinColumnOne = false;
 
@@ -33,13 +37,18 @@ public class SlotController : MonoBehaviour
 
     public void CallSpinAction()
     {
-        StartCoroutine(SpinAction());
+        if (IsSpinCycleActive)
+            return;
+
+        IsSpinCycleActive = true;
+        IsSpinning = true;
+        spinCoroutine = StartCoroutine(SpinAction());
 
         if (startSpinSound != null)
             startSpinSound.Play();
     }
 
-    public IEnumerator SpinAction()
+    private IEnumerator SpinAction()
     {
         Coroutine lastColumnCoroutine = null;
         for (int i = 0; i < slotGrid.columns; i++)
@@ -53,7 +62,17 @@ public class SlotController : MonoBehaviour
         if (slotSpinningSound != null)
             slotSpinningSound.Stop();
 
-        OnSpinEnded?.Invoke();
+        spinCoroutine = null;
+        IsSpinning = false;
+        OnSpinEnded?.Invoke(this);
+    }
+
+    public void CompleteSpinCycle()
+    {
+        if (IsSpinning)
+            return;
+
+        IsSpinCycleActive = false;
     }
 
     public IEnumerator SpinColumn(int columnIndex)
@@ -84,6 +103,11 @@ public class SlotController : MonoBehaviour
 
     private void OnDisable()
     {
+        StopAllCoroutines();
+        spinCoroutine = null;
+        IsSpinning = false;
+        IsSpinCycleActive = false;
+
         if (slotSpinningSound != null)
             slotSpinningSound.Stop();
     }

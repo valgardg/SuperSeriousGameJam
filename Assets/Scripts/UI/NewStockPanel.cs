@@ -5,11 +5,17 @@ public class NewStockPanel : MonoBehaviour
     public Transform optionContainer;
     public GameObject stockOptionPrefab;
 
-    private void Start()
+    private void Awake()
     {
-        gameObject.SetActive(false); // Hide the panel initially
         StockOptionUI.OnStockOptionSelected += HandleStockOptionSelected;
         GameController.DisplayStockPicker += DisplayStockPicker;
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        StockOptionUI.OnStockOptionSelected -= HandleStockOptionSelected;
+        GameController.DisplayStockPicker -= DisplayStockPicker;
     }
 
     public void DisplayStockPicker(StockDefinition[] stockDefinitions)

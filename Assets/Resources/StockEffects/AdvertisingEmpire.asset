@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba28bc483e2453db02a92c69abe2264, type: 3}
   m_Name: AdvertisingEmpire
   m_EditorClassIdentifier: Assembly-CSharp::PeriodicBonusEffect
-  effectName: 
+  effectName: Advertising Empire
   description: Every 4 turns, receive $12
   roundInterval: 4
   bonusValue: 12
