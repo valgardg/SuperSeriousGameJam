@@ -8,7 +8,9 @@ public class StockOptionUI : MonoBehaviour
 
     // ui elements
     public Image stockIconImage;
-    public TMP_Text optionDescriptionText;
+    public TMP_Text stockName;
+    public TMP_Text stockStats;
+    public TMP_Text stockSideEEffect;
 
     public static event System.Action<StockDefinition> OnStockOptionSelected;
 
@@ -20,7 +22,11 @@ public class StockOptionUI : MonoBehaviour
         stockIconImage.sprite = stockDefinition.icon;
 
         // set the description
-        optionDescriptionText.text = GetStockOptionDescription(stockDefinition);
+        stockName.text = stockDefinition.stockName;
+        stockStats.text = $"{stockDefinition.stockType} - Gives ${stockDefinition.baseValue}";
+        stockSideEEffect.text = stockDefinition.effects != null && stockDefinition.effects.Length > 0
+            ? $"{stockDefinition.effects[0].effectName}: {stockDefinition.effects[0].description}"
+            : string.Empty;
     }
 
     private string GetStockOptionDescription(StockDefinition stockDefinition)

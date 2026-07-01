@@ -19,7 +19,7 @@ public class PlayerStatsUI : MonoBehaviour
         if (gameController == null) return;
 
         currentDayText.text = $"Day: {gameController.currentDay}";
-        playerMoneyText.text = $"${gameController.playerState.money}";
+        playerMoneyText.text = $"{gameController.playerState.money}";
         nextRentDueAmountText.text = $"Upcoming rent: ${LandlordController.Instance.NextRentDueAmount}";
 
     }

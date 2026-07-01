@@ -179,7 +179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   stockDefinition: {fileID: 0}
   stockIconImage: {fileID: 8775707487941741944}
-  optionDescriptionText: {fileID: 828205079107601889}
+  stockName: {fileID: 2397984665219187317}
+  stockStats: {fileID: 4164240573401645214}
+  stockSideEEffect: {fileID: 828205079107601889}
 --- !u!1 &1549348655980064308
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +194,7 @@ GameObject:
   - component: {fileID: 7415357677267532899}
   - component: {fileID: 1983396752504190652}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Divider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -397,8 +399,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Does this very specific thing for each thing that thing
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
-  m_sharedMaterial: {fileID: -7024102568173078835, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
+  m_sharedMaterial: {fileID: 8564341293112837588, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -534,8 +536,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tech - Gives $1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
-  m_sharedMaterial: {fileID: -7024102568173078835, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
+  m_sharedMaterial: {fileID: 8564341293112837588, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -671,8 +673,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: NVIDIA
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
-  m_sharedMaterial: {fileID: -7024102568173078835, guid: 34e8a27e339a94b70ba78a5d6b664453, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
+  m_sharedMaterial: {fileID: 8564341293112837588, guid: e7e7dd5d0b4cd42dc8eafa90ad1ba65d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
