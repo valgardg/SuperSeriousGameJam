@@ -17,13 +17,18 @@ public class GameController : MonoBehaviour
     public LandlordController landlordController;
     private int latestRentPrice = 0;
     private SlotController activeSlotController;
+    private DollarSpawner dollarSpawner;
 
     private void Awake()
     {
         playerState = new PlayerState();
+        dollarSpawner = slotCalculator != null ? slotCalculator.dollarSpawner : null;
 
         if (gameOverPanel == null)
             Debug.LogError("GameController requires a Game Over Panel reference.", this);
+
+        if (dollarSpawner == null)
+            Debug.LogError("GameController requires a SlotCalculator with a DollarSpawner.", this);
     }
 
     private void OnEnable()
@@ -31,6 +36,9 @@ public class GameController : MonoBehaviour
         SlotController.OnSpinEnded += HandleSpinEnded;
         StockOptionUI.OnStockOptionSelected += HandleStockOptionSelected;
         LandlordController.OnLandlordEventTriggered += HandleLandlordEventTriggered;
+
+        if (dollarSpawner != null)
+            dollarSpawner.DollarReachedTarget += HandleDollarReachedTarget;
     }
 
     private void OnDisable()
@@ -38,22 +46,31 @@ public class GameController : MonoBehaviour
         SlotController.OnSpinEnded -= HandleSpinEnded;
         StockOptionUI.OnStockOptionSelected -= HandleStockOptionSelected;
         LandlordController.OnLandlordEventTriggered -= HandleLandlordEventTriggered;
+
+        if (dollarSpawner != null)
+            dollarSpawner.DollarReachedTarget -= HandleDollarReachedTarget;
     }
 
     private void HandleSpinEnded(SlotController slotController)
     {
         activeSlotController = slotController;
+        int moneyBeforeSpin = playerState.money;
 
         slotCalculator.StartCalculation(totalValue =>
         {
             Debug.Log($"Total value calculated: {totalValue}");
-            playerState.money += totalValue;
+            playerState.money = moneyBeforeSpin + totalValue;
             Debug.Log($"Player's new money: {playerState.money}");
 
             StockDefinition[] unknownStocks = slotGenerator.GetUnknownStocks();
             DampenSoundtrackVolume();
             DisplayStockPicker?.Invoke(unknownStocks);
         });
+    }
+
+    private void HandleDollarReachedTarget(int value)
+    {
+        playerState.money += value;
     }
 
     private void HandleStockOptionSelected(StockDefinition selectedStock)

@@ -15,6 +15,8 @@ public class Dollar : MonoBehaviour
     private Vector3 _controlPoint;
     private float _elapsed;
     private bool _moving;
+    private int _value;
+    private System.Action<int> _onArrived;
     private System.Action _onDespawned;
     private bool _despawnNotificationSent;
 
@@ -28,11 +30,14 @@ public class Dollar : MonoBehaviour
     public void Launch(
         Transform destination,
         bool isNegative = false,
+        System.Action<int> onArrived = null,
         System.Action onDespawned = null
     )
     {
         target = destination;
         _startPos = transform.position;
+        _value = isNegative ? -1 : 1;
+        _onArrived = onArrived;
         _onDespawned = onDespawned;
         _despawnNotificationSent = false;
 
@@ -86,6 +91,10 @@ public class Dollar : MonoBehaviour
 
     private void OnArrived()
     {
+        System.Action<int> callback = _onArrived;
+        _onArrived = null;
+        callback?.Invoke(_value);
+
         NotifyDespawned();
         Destroy(gameObject);
     }

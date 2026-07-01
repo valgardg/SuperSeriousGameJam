@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DollarSpawner : MonoBehaviour
 {
+    public event System.Action<int> DollarReachedTarget;
+
     public GameObject dollarPrefab;
     public Transform dollarTarget;
 
@@ -70,6 +72,7 @@ public class DollarSpawner : MonoBehaviour
                 dollarScript.Launch(
                     dollarTarget,
                     request.IsNegative,
+                    HandleDollarReachedTarget,
                     HandleDollarDespawned
                 );
                 PlayDollarSpawnSound();
@@ -92,6 +95,11 @@ public class DollarSpawner : MonoBehaviour
     private void HandleDollarDespawned()
     {
         activeDollarCount = Mathf.Max(0, activeDollarCount - 1);
+    }
+
+    private void HandleDollarReachedTarget(int value)
+    {
+        DollarReachedTarget?.Invoke(value);
     }
 
     private void PlayDollarSpawnSound()
