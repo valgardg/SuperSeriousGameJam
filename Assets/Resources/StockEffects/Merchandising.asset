@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Merchandising
   m_EditorClassIdentifier: Assembly-CSharp::PeriodicBonusEffect
   effectName: Merchandising
-  description: Every 5 turns, receive + $30
-  roundInterval: 3
-  bonusValue: 30
+  description: Every 5 turns, receive + $8
+  roundInterval: 5
+  bonusValue: 8

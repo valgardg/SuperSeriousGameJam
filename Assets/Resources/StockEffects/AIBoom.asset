@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AIBoom
   m_EditorClassIdentifier: Assembly-CSharp::AdjacentBonusEffect
   effectName: AI Boom
-  description: Gains +2 for each adjacent Tech stock
+  description: Gains +$2 for each adjacent Tech stock
   matchMode: 1
   requiredStockType: 0
   bonusPerAdjacentStock: 2

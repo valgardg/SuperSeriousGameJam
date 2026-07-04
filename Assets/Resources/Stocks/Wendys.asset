@@ -16,6 +16,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: cb0e0422a266c42c2800d6ab1008f7f1, type: 3}
   stockType: 3
   baseValue: 1
-  rarity: 2
+  rarity: 1
   effects:
   - {fileID: 11400000, guid: b1aa5cc7c8ec84b23934693f50d6b2f1, type: 2}

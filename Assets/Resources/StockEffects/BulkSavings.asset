@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11663d7913214aa09a641283f3e6194c, type: 3}
   m_Name: BulkSavings
   m_EditorClassIdentifier: Assembly-CSharp::AdjacentMultiplierEffect
-  effectName: BulkSavings
+  effectName: Bulk Savings
   description: Adjacent Consumer stocks gain 2x profit
-  matchMode: 0
-  requiredStockType: 0
+  matchMode: 2
+  requiredStockType: 1
   multiplier: 2

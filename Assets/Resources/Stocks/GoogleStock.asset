@@ -15,7 +15,7 @@ MonoBehaviour:
   stockName: GOOG
   icon: {fileID: 21300000, guid: 2c16577ae70954413a49bfcfc8f0616d, type: 3}
   stockType: 0
-  baseValue: 1
-  rarity: 0
+  baseValue: 2
+  rarity: 1
   effects:
   - {fileID: 11400000, guid: cfbfcdc7fd0a94d0f90e2e20d5ef2a31, type: 2}

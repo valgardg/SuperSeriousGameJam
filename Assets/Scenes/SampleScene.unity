@@ -1543,6 +1543,7 @@ MonoBehaviour:
   stockPool: []
   emptyStockDefinition: {fileID: 0}
   initialPlayerStock: {fileID: 0}
+  raritySpawnConfiguration: {fileID: 11400000, guid: 33aab43c52fba407d849ef50c280ca0f, type: 2}
 --- !u!4 &612508558
 Transform:
   m_ObjectHideFlags: 0
@@ -4952,9 +4953,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1947775020990012620, guid: d15f208537df0489f9939a6220f49467, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -36.95259
+      objectReference: {fileID: 0}
     - target: {fileID: 3710832568818428668, guid: d15f208537df0489f9939a6220f49467, type: 3}
       propertyPath: m_Name
       value: NewStockPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357045851078809850, guid: d15f208537df0489f9939a6220f49467, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357045851078809850, guid: d15f208537df0489f9939a6220f49467, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357045851078809850, guid: d15f208537df0489f9939a6220f49467, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357045851078809850, guid: d15f208537df0489f9939a6220f49467, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

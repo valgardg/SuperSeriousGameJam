@@ -15,7 +15,7 @@ MonoBehaviour:
   stockName: Tesla
   icon: {fileID: 21300000, guid: 1fb8388a7640847d8b7112d099d3b1ae, type: 3}
   stockType: 0
-  baseValue: 1
-  rarity: 1
+  baseValue: 0
+  rarity: 2
   effects:
   - {fileID: 11400000, guid: f3a74df21c2e94713bac7c494f3e4662, type: 2}

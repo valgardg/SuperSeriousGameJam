@@ -15,7 +15,7 @@ MonoBehaviour:
   stockName: Costco
   icon: {fileID: 21300000, guid: f9b3d940b939f42088411f9486b2bdb0, type: 3}
   stockType: 1
-  baseValue: 2
-  rarity: 1
+  baseValue: 1
+  rarity: 2
   effects:
   - {fileID: 11400000, guid: 95c0fea71f4a141d0b65bd7109bf8c74, type: 2}

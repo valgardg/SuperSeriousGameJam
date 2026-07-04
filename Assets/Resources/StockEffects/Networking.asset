@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Networking
   m_EditorClassIdentifier: Assembly-CSharp::AdjacentMultiplierEffect
   effectName: Network effect
-  description: "Adjacent stocks gain 2\xD7 their profit"
-  matchMode: 0
+  description: "Adjacent tech stockcs gain 2\xD7 their profit"
+  matchMode: 2
   requiredStockType: 0
   multiplier: 2

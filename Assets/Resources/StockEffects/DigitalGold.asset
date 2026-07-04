@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f02d529bca41769dc8363d9a794a40, type: 3}
   m_Name: DigitalGold
   m_EditorClassIdentifier: Assembly-CSharp::GrowthEffect
-  effectName: DigitalGold
-  description: Gains + $3 base value every 2 turns
-  roundsPerGrowth: 2
-  growthAmount: 3
+  effectName: Digital Gold
+  description: Gains + $1 base value every 3 turns
+  roundsPerGrowth: 3
+  growthAmount: 1

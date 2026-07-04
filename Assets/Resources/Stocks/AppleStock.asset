@@ -15,7 +15,7 @@ MonoBehaviour:
   stockName: AAPL
   icon: {fileID: 21300000, guid: 3b28920fe16a94e559a9d42ba6b700c3, type: 3}
   stockType: 0
-  baseValue: 1
-  rarity: 1
+  baseValue: 2
+  rarity: 3
   effects:
   - {fileID: 11400000, guid: 5384f07e6082b44fc9ee66715f6f5b40, type: 2}

@@ -1,0 +1,241 @@
+{
+    "schemaVersion": 1,
+    "stocks": [
+        {
+            "id": "ffdc071f45624426681d37111b4f1014",
+            "assetPath": "Assets/Resources/EmptyStock/EmptyStock.asset",
+            "stockName": "NULL",
+            "iconId": "GlobalObjectId_V1-1-9df773570f98e48c9a8b39f6e7593025-21300000-0",
+            "stockType": "8",
+            "baseValue": 0,
+            "rarity": "Common",
+            "effectIds": []
+        },
+        {
+            "id": "60f6780aaf7904ae9b13c2a5e18aa603",
+            "assetPath": "Assets/Resources/InitialStock/SPY.asset",
+            "stockName": "SPY",
+            "iconId": "GlobalObjectId_V1-1-7d868ab06dc834bbfbe02303ce0fde24-21300000-0",
+            "stockType": "ETF",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": []
+        },
+        {
+            "id": "2eb50614c68a144858479b3ac1f3be4e",
+            "assetPath": "Assets/Resources/Stocks/AppleStock.asset",
+            "stockName": "AAPL",
+            "iconId": "GlobalObjectId_V1-1-3b28920fe16a94e559a9d42ba6b700c3-21300000-0",
+            "stockType": "Tech",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "5384f07e6082b44fc9ee66715f6f5b40"
+            ]
+        },
+        {
+            "id": "b84cbf8eeb4204101920ab5490dda3d9",
+            "assetPath": "Assets/Resources/Stocks/Bitcoin.asset",
+            "stockName": "Bitcoin",
+            "iconId": "GlobalObjectId_V1-1-3ded36cbf3e134af3b994c489594f84c-21300000-0",
+            "stockType": "Crypto",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "4e625c1f11a76457e987be32d2afb971"
+            ]
+        },
+        {
+            "id": "74b89770cbe9246f6a2498527774b013",
+            "assetPath": "Assets/Resources/Stocks/CocaCola.asset",
+            "stockName": "Coca Cola",
+            "iconId": "GlobalObjectId_V1-1-bc656a9841c4b42318c0d23ef97aa0fe-21300000-0",
+            "stockType": "Consumer",
+            "baseValue": 2,
+            "rarity": "Common",
+            "effectIds": [
+                "21133eb19d09e411c83db923750b50be"
+            ]
+        },
+        {
+            "id": "59bd5f040fd484b3190a16c699c092a7",
+            "assetPath": "Assets/Resources/Stocks/Costco.asset",
+            "stockName": "Costco",
+            "iconId": "GlobalObjectId_V1-1-f9b3d940b939f42088411f9486b2bdb0-21300000-0",
+            "stockType": "Consumer",
+            "baseValue": 2,
+            "rarity": "Common",
+            "effectIds": [
+                "95c0fea71f4a141d0b65bd7109bf8c74"
+            ]
+        },
+        {
+            "id": "995ebab2f847f4e76aacf538f47dc48d",
+            "assetPath": "Assets/Resources/Stocks/Disney.asset",
+            "stockName": "Disney",
+            "iconId": "GlobalObjectId_V1-1-20affbecddfee46c89f3bec2016fd709-21300000-0",
+            "stockType": "Consumer",
+            "baseValue": 2,
+            "rarity": "Common",
+            "effectIds": [
+                "d0aafc4617e464921899a82f24075502"
+            ]
+        },
+        {
+            "id": "29b5d87b842e24be5b567297063a51aa",
+            "assetPath": "Assets/Resources/Stocks/Dodgecoin.asset",
+            "stockName": "Dodgecoin",
+            "iconId": "GlobalObjectId_V1-1-43f13c37f71924d7596901bc977aa563-21300000-0",
+            "stockType": "Crypto",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "73d7336cb8a624421959bd53a3a308ea"
+            ]
+        },
+        {
+            "id": "f74a1cb83c5d34a70a0fd56a3b27b66f",
+            "assetPath": "Assets/Resources/Stocks/Etherium.asset",
+            "stockName": "Etherium",
+            "iconId": "GlobalObjectId_V1-1-39acb9b9b841745d3a72506658e977f5-21300000-0",
+            "stockType": "Crypto",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "3d45ddec0538849658228aac038a9146"
+            ]
+        },
+        {
+            "id": "de044644e5c3d4cb99170ed4b9bd1940",
+            "assetPath": "Assets/Resources/Stocks/Gamestop.asset",
+            "stockName": "Gamestop",
+            "iconId": "GlobalObjectId_V1-1-cb8e09113064144f5bed54ffde4ebb7e-21300000-0",
+            "stockType": "Meme",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "491237dd465904675a8ff24836f01232"
+            ]
+        },
+        {
+            "id": "38581113a2cbc4ba6af7984c4692610a",
+            "assetPath": "Assets/Resources/Stocks/GoogleStock.asset",
+            "stockName": "GOOG",
+            "iconId": "GlobalObjectId_V1-1-2c16577ae70954413a49bfcfc8f0616d-21300000-0",
+            "stockType": "Tech",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "cfbfcdc7fd0a94d0f90e2e20d5ef2a31"
+            ]
+        },
+        {
+            "id": "0386db87908184b909955641a010b97b",
+            "assetPath": "Assets/Resources/Stocks/McDonalds.asset",
+            "stockName": "McDonalds",
+            "iconId": "GlobalObjectId_V1-1-53502df1f4bee409bb3174b7792c120a-21300000-0",
+            "stockType": "Consumer",
+            "baseValue": 2,
+            "rarity": "Common",
+            "effectIds": [
+                "bb1ec038e25c14790b7b0cf806d873d3"
+            ]
+        },
+        {
+            "id": "49285f323a3ac4b3bab2ffb831452d93",
+            "assetPath": "Assets/Resources/Stocks/MetaStock.asset",
+            "stockName": "META",
+            "iconId": "GlobalObjectId_V1-1-67981a37927fc4b2ead9ed16b5982ae3-21300000-0",
+            "stockType": "Tech",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "c53d1dab6bdff444c99fad35daf06e6e"
+            ]
+        },
+        {
+            "id": "3f0bd8397f9034325b606127e5549a84",
+            "assetPath": "Assets/Resources/Stocks/Nike.asset",
+            "stockName": "Nike",
+            "iconId": "GlobalObjectId_V1-1-81bfad768b42240188ea8ed8cf3c8cc9-21300000-0",
+            "stockType": "Consumer",
+            "baseValue": 3,
+            "rarity": "Common",
+            "effectIds": [
+                "2e3567ad08ef4458194d8070a3a55d4b"
+            ]
+        },
+        {
+            "id": "5cb54ca361c3b4694b5158cddca0c76b",
+            "assetPath": "Assets/Resources/Stocks/Nokia.asset",
+            "stockName": "Nokia",
+            "iconId": "GlobalObjectId_V1-1-faa73ee04f675442da84626b7f56dcff-21300000-0",
+            "stockType": "Meme",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "4119c476cbdac4059ba27c2327db107a"
+            ]
+        },
+        {
+            "id": "3b5f64b24fe624144a32aae2d8a243cb",
+            "assetPath": "Assets/Resources/Stocks/NvidiaStock.asset",
+            "stockName": "NVDA",
+            "iconId": "GlobalObjectId_V1-1-c35e726c8b1bf4e11a2d1cf4852b1048-21300000-0",
+            "stockType": "Tech",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "51d2836b2c985460287823d4caf57c3a"
+            ]
+        },
+        {
+            "id": "714928b87e91c4201bf52c24cbd8177b",
+            "assetPath": "Assets/Resources/Stocks/QQQ.asset",
+            "stockName": "QQQ",
+            "iconId": "GlobalObjectId_V1-1-5cfaefcc6081144e4a7a3ac7944120ac-21300000-0",
+            "stockType": "ETF",
+            "baseValue": 2,
+            "rarity": "Common",
+            "effectIds": [
+                "987e7d8266c9a4fe2b8cc49c272b07d5"
+            ]
+        },
+        {
+            "id": "0907f89bd2a2b452097af86c53fbdfd9",
+            "assetPath": "Assets/Resources/Stocks/Tesla.asset",
+            "stockName": "Tesla",
+            "iconId": "GlobalObjectId_V1-1-1fb8388a7640847d8b7112d099d3b1ae-21300000-0",
+            "stockType": "Tech",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "f3a74df21c2e94713bac7c494f3e4662"
+            ]
+        },
+        {
+            "id": "c72565e2f9ba74c60b8f2d9c83f11ecf",
+            "assetPath": "Assets/Resources/Stocks/VOO.asset",
+            "stockName": "VOO",
+            "iconId": "GlobalObjectId_V1-1-6645f6a14c658421d939234b3d2b9e3b-21300000-0",
+            "stockType": "ETF",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "9034caaac83bd4b0bad400b495e32516"
+            ]
+        },
+        {
+            "id": "6e715e28025b541199fb6abc3b1e45e0",
+            "assetPath": "Assets/Resources/Stocks/Wendys.asset",
+            "stockName": "Wendys",
+            "iconId": "GlobalObjectId_V1-1-cb0e0422a266c42c2800d6ab1008f7f1-21300000-0",
+            "stockType": "Meme",
+            "baseValue": 1,
+            "rarity": "Common",
+            "effectIds": [
+                "b1aa5cc7c8ec84b23934693f50d6b2f1"
+            ]
+        }
+    ]
+}

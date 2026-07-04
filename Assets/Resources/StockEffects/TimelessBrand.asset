@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TimelessBrand
   m_EditorClassIdentifier: Assembly-CSharp::GrowthEffect
   effectName: Timeless Brand
-  description: Gains + $1 base value every 2 turns
-  roundsPerGrowth: 2
+  description: Gains + $1 base value every 4 turns
+  roundsPerGrowth: 4
   growthAmount: 1

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Unbreakable
   m_EditorClassIdentifier: Assembly-CSharp::GrowthEffect
   effectName: Unbreakable
-  description: Gains + $1 base value every 2 turns
-  roundsPerGrowth: 2
+  description: Gains + $1 base value every 3 turns
+  roundsPerGrowth: 3
   growthAmount: 1

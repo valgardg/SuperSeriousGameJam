@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Day5
   m_EditorClassIdentifier: Assembly-CSharp::DayInfo
   triggerDay: 5
-  rentPrice: 50
+  rentPrice: 75
   landlordText: Hey I'm back! You got that Benjamin for me? Also, rent is due in
     another 5 days, and this time its gonna be 150!
