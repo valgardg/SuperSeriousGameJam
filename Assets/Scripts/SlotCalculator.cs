@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SlotCalculator : MonoBehaviour
 {
+    public event System.Action<PortfolioStock, int> PortfolioPayoutCalculated;
+
     public SlotGrid slotGrid;
     public GameController gameController;
     public DollarSpawner dollarSpawner;
@@ -17,6 +19,9 @@ public class SlotCalculator : MonoBehaviour
 
     private IEnumerator CalculateGridValueCoroutine(System.Action<int> onComplete)
     {
+        int currentRound = gameController.currentDay + 1;
+        gameController.playerState.PreparePortfolioForRound(currentRound);
+
         int totalValue = 0;
         yield return StartCoroutine(CalculateBaseValueCoroutine(result => totalValue = result));
 
@@ -42,12 +47,17 @@ public class SlotCalculator : MonoBehaviour
                     slot,
                     x,
                     y,
-                    gameController.currentDay + 1,
+                    currentRound,
                     totalValue
                 );
 
                 foreach (StockEffect effect in slot.StockDefinition.effects)
                 {
+                    if (effect == null
+                        || effect is IStockBaseValueModifier
+                        || effect is IPortfolioPayoutEffect)
+                        continue;
+
                     effect.Apply(context);
                 }
 
@@ -61,8 +71,44 @@ public class SlotCalculator : MonoBehaviour
             }
         }
 
-        Debug.Log($"Total grid value after effects: {totalValue}");
+        yield return StartCoroutine(CalculatePortfolioPayoutCoroutine(
+            totalValue,
+            result => totalValue = result
+        ));
+
+        Debug.Log($"Total value after base values, effects, and portfolio payouts: {totalValue}");
         yield return StartCoroutine(dollarSpawner.WaitUntilComplete());
+        onComplete?.Invoke(totalValue);
+    }
+
+    private IEnumerator CalculatePortfolioPayoutCoroutine(
+        int startingValue,
+        System.Action<int> onComplete
+    )
+    {
+        int totalValue = startingValue;
+
+        foreach (PortfolioStock portfolioStock in gameController.playerState.OwnedStocks)
+        {
+            StockEffect[] effects = portfolioStock.Definition.effects;
+            if (effects == null)
+                continue;
+
+            foreach (StockEffect effect in effects)
+            {
+                if (!(effect is IPortfolioPayoutEffect portfolioPayoutEffect))
+                    continue;
+
+                int payout = portfolioPayoutEffect.GetPortfolioPayout(portfolioStock);
+                if (payout == 0)
+                    continue;
+
+                yield return new WaitForSeconds(cellDelay);
+                totalValue += payout;
+                PortfolioPayoutCalculated?.Invoke(portfolioStock, payout);
+            }
+        }
+
         onComplete?.Invoke(totalValue);
     }
 

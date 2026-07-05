@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Stocks/Effects/Growth")]
-public class GrowthEffect : StockEffect
+public class GrowthEffect : StockEffect, IStockBaseValueModifier
 {
     [Min(1)]
     public int roundsPerGrowth = 3;
@@ -11,9 +11,14 @@ public class GrowthEffect : StockEffect
 
     public override void Apply(StockEffectContext context)
     {
-        int interval = Mathf.Max(1, roundsPerGrowth);
-        int completedGrowthPeriods = Mathf.Max(0, context.RoundNumber) / interval;
+        // Growth is applied to the portfolio entry before base-value scoring.
+    }
 
-        context.TotalValue += completedGrowthPeriods * Mathf.Max(0, growthAmount);
+    public int GetBaseValueBonus(int roundsOwned)
+    {
+        int interval = Mathf.Max(1, roundsPerGrowth);
+        int completedGrowthPeriods = Mathf.Max(0, roundsOwned) / interval;
+
+        return completedGrowthPeriods * Mathf.Max(0, growthAmount);
     }
 }

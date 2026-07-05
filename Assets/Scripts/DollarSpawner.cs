@@ -27,10 +27,10 @@ public class DollarSpawner : MonoBehaviour
     private struct SpawnRequest
     {
         public int Count;
-        public Transform Origin;
+        public Vector3 Origin;
         public bool IsNegative;
 
-        public SpawnRequest(int count, Transform origin, bool isNegative)
+        public SpawnRequest(int count, Vector3 origin, bool isNegative)
         {
             Count = count;
             Origin = origin;
@@ -41,6 +41,14 @@ public class DollarSpawner : MonoBehaviour
     public void SpawnDollars(int value, Transform origin)
     {
         if (value == 0 || origin == null)
+            return;
+
+        SpawnDollars(value, origin.position);
+    }
+
+    public void SpawnDollars(int value, Vector3 origin)
+    {
+        if (value == 0)
             return;
 
         int count = Mathf.Abs(value);
@@ -58,12 +66,9 @@ public class DollarSpawner : MonoBehaviour
 
             for (int i = 0; i < request.Count; i++)
             {
-                if (request.Origin == null)
-                    break;
-
                 GameObject dollar = Instantiate(
                     dollarPrefab,
-                    request.Origin.position,
+                    request.Origin,
                     Quaternion.identity
                 );
 

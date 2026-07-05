@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Stocks/Effects/Periodic Bonus")]
-public class PeriodicBonusEffect : StockEffect
+public class PeriodicBonusEffect : StockEffect, IPortfolioPayoutEffect
 {
     [Min(1)]
     public int roundInterval = 3;
@@ -11,11 +11,17 @@ public class PeriodicBonusEffect : StockEffect
 
     public override void Apply(StockEffectContext context)
     {
+        // Periodic payouts are processed from the portfolio after grid effects.
+    }
+
+    public int GetPortfolioPayout(PortfolioStock stock)
+    {
         int interval = Mathf.Max(1, roundInterval);
+        if (stock == null
+            || stock.RoundsOwned <= 0
+            || stock.RoundsOwned % interval != 0)
+            return 0;
 
-        if (context.RoundNumber <= 0 || context.RoundNumber % interval != 0)
-            return;
-
-        context.TotalValue += Mathf.Max(0, bonusValue);
+        return Mathf.Max(0, bonusValue);
     }
 }

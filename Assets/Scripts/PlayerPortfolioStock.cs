@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerPortfolioStock : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public StockDefinition stockDefinition;
-    public static event System.Action<StockDefinition> OnHover;
+    public PortfolioStock PortfolioStock { get; private set; }
+    public static event System.Action<PortfolioStock> OnHover;
     public static event System.Action OnHoverExit;
 
     private Image stockIconImage;
@@ -15,18 +15,18 @@ public class PlayerPortfolioStock : MonoBehaviour, IPointerEnterHandler, IPointe
         stockIconImage = GetComponent<Image>();
     }
 
-    public void Init(StockDefinition stockDefinition)
+    public void Init(PortfolioStock portfolioStock)
     {
-        this.stockDefinition = stockDefinition;
+        PortfolioStock = portfolioStock;
 
-        if (stockIconImage != null && stockDefinition != null)
-            stockIconImage.sprite = stockDefinition.icon;
+        if (stockIconImage != null && portfolioStock != null)
+            stockIconImage.sprite = portfolioStock.Definition.icon;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Hover");
-        OnHover?.Invoke(stockDefinition);
+        OnHover?.Invoke(PortfolioStock);
     }
 
     public void OnPointerExit(PointerEventData eventData)

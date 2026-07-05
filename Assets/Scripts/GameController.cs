@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -63,8 +64,15 @@ public class GameController : MonoBehaviour
             Debug.Log($"Player's new money: {playerState.money}");
 
             StockDefinition[] unknownStocks = slotGenerator.GetUnknownStocks();
-            DampenSoundtrackVolume();
-            DisplayStockPicker?.Invoke(unknownStocks);
+            if (unknownStocks.Length > 0)
+            {
+                DampenSoundtrackVolume();
+                DisplayStockPicker?.Invoke(unknownStocks);
+            }
+            else
+            {
+                CompleteStockSelection();
+            }
         });
     }
 
@@ -75,8 +83,28 @@ public class GameController : MonoBehaviour
 
     private void HandleStockOptionSelected(StockDefinition selectedStock)
     {
-        playerState.AddStock(selectedStock);
-        Debug.Log($"Added stock: {selectedStock.name} to player's inventory.");
+        PortfolioStock portfolioStock = playerState.AddStock(
+            selectedStock,
+            currentDay + 1
+        );
+
+        if (portfolioStock != null)
+        {
+            Debug.Log($"Added stock: {selectedStock.name} to player's inventory.");
+        }
+        else
+        {
+            Debug.LogWarning(
+                $"Stock '{selectedStock.name}' is already in the player's portfolio.",
+                this
+            );
+        }
+
+        CompleteStockSelection();
+    }
+
+    private void CompleteStockSelection()
+    {
         RestoreSoundtrackVolume();
         currentDay++;
         latestRentPrice = landlordController.CheckTriggerDayInfo(currentDay);
@@ -152,7 +180,9 @@ public class GameController : MonoBehaviour
     private void Update() {
         #if UNITY_EDITOR
         if (showDebugState)
-            _debugOwnedStocks = playerState.OwnedStocks.ToArray();
+            _debugOwnedStocks = playerState.OwnedStocks
+                .Select(stock => stock.Definition)
+                .ToArray();
         #endif
     }
 }

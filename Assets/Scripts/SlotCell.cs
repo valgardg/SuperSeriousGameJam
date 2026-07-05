@@ -5,27 +5,25 @@ public class SlotCell : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private Sprite emptySprite;
     private SpriteRenderer spriteRenderer;
-    public int baseValue;
 
-    public StockDefinition StockDefinition { get; private set; }
-    public int BaseValue { get; private set; }
+    public PortfolioStock PortfolioStock { get; private set; }
+    public StockDefinition StockDefinition => PortfolioStock?.Definition;
+    public int BaseValue => PortfolioStock?.CurrentBaseValue ?? 0;
     public bool IsEmpty { get; private set; }
     
-    public void Init(StockDefinition stockDefinition, bool isEmpty = false)
+    public void Init(PortfolioStock portfolioStock, bool isEmpty = false)
     {
-        IsEmpty = isEmpty;
-        StockDefinition = stockDefinition;
+        IsEmpty = isEmpty || portfolioStock == null;
+        PortfolioStock = portfolioStock;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (IsEmpty || stockDefinition == null)
+        if (IsEmpty)
         {
-            BaseValue = 0;
             spriteRenderer.sprite = emptySprite;
             return;
         }
 
-        BaseValue = stockDefinition.baseValue;
-        spriteRenderer.sprite = stockDefinition.icon;
+        spriteRenderer.sprite = portfolioStock.Definition.icon;
     }
 }

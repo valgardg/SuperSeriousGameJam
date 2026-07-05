@@ -53,15 +53,15 @@ public class SlotGenerator : MonoBehaviour
         }
 
         if (initialPlayerStock != null)
-            gameController.playerState.AddStock(initialPlayerStock);
+            gameController.playerState.AddStock(initialPlayerStock, 0);
     }
 
     public SlotCell GenerateSlotCell(bool isEmpty = false)
     {
         SlotCell cell = Instantiate(cellPrefab, transform);
-        StockDefinition stockDefinition;
+        PortfolioStock portfolioStock = null;
 
-        List<StockDefinition> ownedStocks = gameController.playerState.OwnedStocks;
+        List<PortfolioStock> ownedStocks = gameController.playerState.OwnedStocks;
 
         float fillChance = Mathf.Lerp(0.10f, 1f, Mathf.Sqrt(ownedStocks.Count / 15f));
         bool generateFilled = !isEmpty
@@ -69,15 +69,9 @@ public class SlotGenerator : MonoBehaviour
             && Random.value < fillChance;
 
         if (generateFilled)
-        {
-            stockDefinition = ownedStocks[Random.Range(0, ownedStocks.Count)];
-        }
-        else
-        {
-            stockDefinition = emptyStockDefinition;
-        }
+            portfolioStock = ownedStocks[Random.Range(0, ownedStocks.Count)];
 
-        cell.Init(isEmpty: !generateFilled, stockDefinition: stockDefinition);
+        cell.Init(portfolioStock, isEmpty: !generateFilled);
         return cell;
     }
 
@@ -98,7 +92,7 @@ public class SlotGenerator : MonoBehaviour
 
         int pickerDay = gameController.currentDay + 1;
         HashSet<StockDefinition> ownedStocks = new(
-            gameController.playerState.OwnedStocks
+            gameController.playerState.OwnedStocks.Select(stock => stock.Definition)
         );
 
         List<StockDefinition> unownedCandidates = stockPool
@@ -112,20 +106,6 @@ public class SlotGenerator : MonoBehaviour
             StockOptionCount,
             configuration
         );
-
-        if (options.Count < StockOptionCount)
-        {
-            List<StockDefinition> ownedCandidates = ownedStocks
-                .Where(stock => !options.Contains(stock))
-                .Where(stock => IsEligibleForPicker(stock, pickerDay, configuration))
-                .ToList();
-
-            options.AddRange(DrawWeightedStocks(
-                ownedCandidates,
-                StockOptionCount - options.Count,
-                configuration
-            ));
-        }
 
         if (options.Count < StockOptionCount)
         {
@@ -214,7 +194,7 @@ public class SlotGenerator : MonoBehaviour
     public SlotCell GenerateEmptySlotCell()
     {
         SlotCell cell = Instantiate(cellPrefab, transform);
-        cell.Init(isEmpty: true, stockDefinition: emptyStockDefinition);
+        cell.Init(null, isEmpty: true);
         return cell;
     }
 }
