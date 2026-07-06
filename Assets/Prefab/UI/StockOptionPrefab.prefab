@@ -318,6 +318,7 @@ MonoBehaviour:
   stockDefinition: {fileID: 0}
   stockIconImage: {fileID: 8775707487941741944}
   stockName: {fileID: 2397984665219187317}
+  stockRarity: {fileID: 5840867142163689747}
   stockStats: {fileID: 4164240573401645214}
   stockSideEEffect: {fileID: 828205079107601889}
 --- !u!1 &1549348655980064308

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da7bb6064dfc7457f9ac05e69c21fc98, type: 3}
-  m_Name: Day15
+  m_Name: rent4
   m_EditorClassIdentifier: Assembly-CSharp::DayInfo
-  triggerDay: 15
-  rentPrice: 400
-  landlordText: Inflation sucks huh? That'll be 400 pleaseee!
+  triggerDay: 28
+  rentPrice: 1000
+  landlordText: I really need to get the latest mist console thing, so 1k please.

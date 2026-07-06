@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da7bb6064dfc7457f9ac05e69c21fc98, type: 3}
-  m_Name: Day5
+  m_Name: rent2
   m_EditorClassIdentifier: Assembly-CSharp::DayInfo
-  triggerDay: 5
-  rentPrice: 75
-  landlordText: Hey I'm back! You got that Benjamin for me? Also, rent is due in
-    another 5 days, and this time its gonna be 150!
+  triggerDay: 14
+  rentPrice: 150
+  landlordText: 400 in 5 days. Don't be late.

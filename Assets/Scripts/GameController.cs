@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     public int currentDay = 0;
     public LandlordController landlordController;
     private int latestRentPrice = 0;
+    private int pendingCompletedDay = 0;
     private SlotController activeSlotController;
     private DollarSpawner dollarSpawner;
 
@@ -106,11 +107,11 @@ public class GameController : MonoBehaviour
     private void CompleteStockSelection()
     {
         RestoreSoundtrackVolume();
-        currentDay++;
-        latestRentPrice = landlordController.CheckTriggerDayInfo(currentDay);
+        pendingCompletedDay = currentDay + 1;
+        latestRentPrice = landlordController.CheckTriggerDayInfo(pendingCompletedDay);
 
         if (latestRentPrice <= 0)
-            CompleteCurrentSpinCycle();
+            FinishDay();
     }
 
     public void AttemptToPayRent()
@@ -128,7 +129,7 @@ public class GameController : MonoBehaviour
             latestRentPrice = 0;
             RestoreSoundtrackVolume();
             RentPaid?.Invoke();
-            CompleteCurrentSpinCycle();
+            FinishDay();
         }
         else
         {
@@ -155,6 +156,13 @@ public class GameController : MonoBehaviour
 
         activeSlotController.CompleteSpinCycle();
         activeSlotController = null;
+    }
+
+    private void FinishDay()
+    {
+        currentDay = pendingCompletedDay;
+        pendingCompletedDay = 0;
+        CompleteCurrentSpinCycle();
     }
 
     private void DampenSoundtrackVolume()

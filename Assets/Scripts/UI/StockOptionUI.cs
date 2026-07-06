@@ -9,6 +9,7 @@ public class StockOptionUI : MonoBehaviour
     // ui elements
     public Image stockIconImage;
     public TMP_Text stockName;
+    public TMP_Text stockRarity;
     public TMP_Text stockStats;
     public TMP_Text stockSideEEffect;
 
@@ -23,6 +24,7 @@ public class StockOptionUI : MonoBehaviour
 
         // set the description
         stockName.text = stockDefinition.stockName;
+        stockRarity.text = $"{stockDefinition.rarity}";
         stockStats.text = $"{stockDefinition.stockType} - Gives ${stockDefinition.baseValue}";
         stockSideEEffect.text = stockDefinition.effects != null && stockDefinition.effects.Length > 0
             ? $"{stockDefinition.effects[0].effectName}: {stockDefinition.effects[0].description}"
